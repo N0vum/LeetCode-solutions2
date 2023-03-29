@@ -1,0 +1,26 @@
+const minOperations = function(boxes) {
+      let separatedBoxes = [...boxes];
+  return separatedBoxes.map((box, index) => {
+    let boxesArr = separatedBoxes.slice();
+    let leftArr = boxesArr.slice(0, index);
+    let rightArr = boxesArr.slice(index + 1);
+    let accLeft = 0;
+    let accRight = 0;
+    leftArr.forEach((el, indexL) => {
+      if (el == 0 || index == 0) {
+        return;
+      } else {
+        accLeft = accLeft + (leftArr.length - indexL);
+      }
+    });
+    rightArr.forEach((el, indexR) => {
+      if (el == 0 || index == separatedBoxes.length - 1) {
+        return;
+      } else {
+        accRight = accRight + (indexR + 1);
+      }
+    });
+    return accLeft + accRight;
+  });
+};
+console.log(minOperations("001011")); //[11,8,5,4,3,4]
