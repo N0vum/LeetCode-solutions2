@@ -1,0 +1,33 @@
+ const findLongestWord = function(s, dictionary) {
+  const sortedDictionary = dictionary.sort((a, b) => (a > b ? 1 : -1)).sort(
+    (a, b) => b.length - a.length
+  );
+  for (let i = 0; i < sortedDictionary.length; i++) {
+    const word = sortedDictionary[i];
+    let copyString = s.slice();
+    let suitableWord = "";
+        for (let j = 0; j < word.length; j++) {
+        const char = word[j];
+        if (copyString.indexOf(char) != -1) {
+          suitableWord = suitableWord + char;
+         copyString = copyString.slice(copyString.indexOf(char) + 1);
+        }
+      }
+     if (suitableWord.length == word.length) {
+      return suitableWord;
+    } else if (suitableWord.length == 0) {
+      return "";
+    }
+    }
+  };
+  console.log(
+  findLongestWord("abpcplea", [
+    "ale",
+    "apple",
+    "monkey",
+    "plea",
+    "abpcplaaa",
+    "abpcllllll",
+    "abccclllpppeeaaaa",
+  ])
+); //apple
